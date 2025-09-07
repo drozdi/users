@@ -1,0 +1,7 @@
+users
+Начальная школа, логин: es пароль: 123
+external_service, логин: external_service пароль: 369874125
+zavuch, логин: zavuch пароль: 36541
+gia, логин: gia пароль: 369874125
+asiou, логин: asiou пароль: 369874125
+acc, логин: acc пароль: 369874125
