@@ -10,6 +10,11 @@ export async function requestRemoveUserGroup(file: string) {
 	return res.data
 }
 
+export async function requestUpUserGroup(file: string) {
+	const res = await api.post('?up_user_group=1&file=' + file)
+	return res.data
+}
+
 export async function requestAddUserGroup(name: string) {
 	const res = await api.post('?add_user_group=1', {
 		name,

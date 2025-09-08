@@ -36,7 +36,26 @@
 			'label' => $_POST['name'],
 			'path' => $_POST['name'].'.json'
 		]);
-	} elseif ($_REQUEST['list_groups']??false) {
+	} elseif (isset($_REQUEST['up_user_group'])??false) {
+        $result = ['status' => 'error'];
+		if (isset($_REQUEST['file'])) {
+            if (preg_match('/(users|class)_([0-9]{1,2})(\w)\.json/', $_REQUEST['file'], $matches)) {
+                $matches[4] = str_replace(array('a', 'b', 'v', 'g', 'd'), array('а', 'б', 'в', 'г', 'д'), $matches[3]);
+                $pupils = json_decode(file_get_contents('users/'.$_REQUEST['file']));
+                foreach ($pupils as &$pupil) {
+                    $pupil = (array)$pupil;
+                    $pupil['sub'] = ((int)$matches[2] + 1).$matches[4];
+                    $pupil['add_groups'] = str_replace('class_'.$matches[2].$matches[3], 'class_'.((int)$matches[2] + 1).$matches[3], $pupil['add_groups']);
+                }
+                @unlink('users/'.$_REQUEST['file']);
+                file_put_contents('users/'.$matches[1].'_'.((int)$matches[2] + 1).$matches[3].'.json', json_encode($pupils));
+				$result['status'] = 'ok';
+				$result['label'] = $matches[1].'_'.((int)$matches[2] + 1).$matches[3];
+				$result['path'] = $result['label'].'.json';
+            }
+        }
+        echo json_encode($result);
+    } elseif ($_REQUEST['list_groups']??false) {
 		echo file_get_contents('groups/groups.json');
 	}
 
