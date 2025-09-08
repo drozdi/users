@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Group, Stack, Tooltip } from '@mantine/core'
+import { ActionIcon, NavLink, Stack, Tooltip } from '@mantine/core'
 import { useEffect, useMemo, useState } from 'react'
 import { TbArrowNarrowUp, TbX } from 'react-icons/tb'
 import {
@@ -6,10 +6,12 @@ import {
 	requestRemoveUserGroup,
 	requestUpUserGroup,
 } from '../api/api-user-group'
+import { useRouterApp } from '../context/router-context'
 import { useQuery } from '../hooks/use-query'
 import classes from './style.module.css'
 
 export function UserGroup() {
+	const ctx = useRouterApp()
 	const { isLoading, error, request } = useQuery(requestListUserGroup)
 	const [_list, setList] = useState<
 		Array<{
@@ -54,34 +56,41 @@ export function UserGroup() {
 					item.path === path ? { ...res, status: undefined } : item
 				)
 			)
+			await fetch()
 		} catch (error) {
 			console.log(error)
 		}
 	}
+	async function handleAdd() {}
+	function hadleEdit(file: string) {
+		ctx.setUserList(file)
+	}
+
 	return (
 		<Stack gap={0}>
 			{list.map(item => (
-				<Group className={classes.item} key={item.path} justify='space-between'>
-					<Group>
-						<Box w='1rem'>
-							{item.up && (
-								<Tooltip label='Перевести в следующий класс'>
-									<ActionIcon color='green' onClick={() => handleUp(item.path)}>
-										<TbArrowNarrowUp />
-									</ActionIcon>
-								</Tooltip>
-							)}
-						</Box>
-						<Box justify='center' align='center'>
-							{item.label}
-						</Box>
-					</Group>
-					<Tooltip label='Удалить'>
-						<ActionIcon color='red' onClick={() => handleRemove(item.path)}>
-							<TbX />
-						</ActionIcon>
-					</Tooltip>
-				</Group>
+				<NavLink
+					className={classes.item}
+					leftSection={
+						item.up && (
+							<Tooltip label='Перевести в следующий класс'>
+								<ActionIcon color='green' onClick={() => handleUp(item.path)}>
+									<TbArrowNarrowUp />
+								</ActionIcon>
+							</Tooltip>
+						)
+					}
+					rightSection={
+						<Tooltip label='Удалить'>
+							<ActionIcon color='red' onClick={() => handleRemove(item.path)}>
+								<TbX />
+							</ActionIcon>
+						</Tooltip>
+					}
+					key={item.path}
+					label={item.label}
+					onClick={() => hadleEdit(item.path)}
+				/>
 			))}
 		</Stack>
 	)

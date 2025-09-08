@@ -55,7 +55,9 @@
             }
         }
         echo json_encode($result);
-    } elseif ($_REQUEST['list_groups']??false) {
+    } elseif ($_REQUEST['list_users']??false) {
+		echo file_get_contents('users/'.$_REQUEST['file']);
+	} elseif ($_REQUEST['list_groups']??false) {
 		echo file_get_contents('groups/groups.json');
 	}
 

@@ -1,9 +1,11 @@
-export function UserItem({ user }: { user: any }) {
+import { Button, Table } from '@mantine/core'
+export function UserItem({ user, header }: { user: any; header?: any[] }) {
 	return (
-		<tr id={`tr_${user.id}`}>
-			<td>
-				<button className='remove btn btn-danger'>${user.id}</button>
-			</td>
+		<Table.Tr id={`tr_${user.id}`}>
+			<Table.Td>
+				<Button color='red'>{user.uid}</Button>
+			</Table.Td>
+			<Table.Td></Table.Td>
 			{/* <?php foreach ($head as $key => $field): ?>
                         <td>
                             <?php if (!empty($field['values']) && true === ($field['multiple']??false) && false): $person[$key] = explode(' ', $person[$key]); ?>
@@ -24,6 +26,6 @@ export function UserItem({ user }: { user: any }) {
                             <?php endif; ?>
                         </td>
                     <?php endforeach; ?> */}
-		</tr>
+		</Table.Tr>
 	)
 }

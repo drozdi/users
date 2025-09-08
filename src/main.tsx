@@ -13,6 +13,7 @@ import {
 import '@mantine/core/styles.css'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
+import { TemplateProvider } from './context/template-context'
 
 const theme = createTheme({
 	components: {
@@ -35,7 +36,7 @@ const theme = createTheme({
 		Button: Button.extend({
 			defaultProps: {
 				size: 'xs',
-				variant: 'subtle',
+				variant: 'filled',
 			},
 		}),
 		Input: Input.extend({
@@ -81,6 +82,8 @@ const theme = createTheme({
 
 createRoot(document.getElementById('root')!).render(
 	<MantineProvider theme={theme}>
-		<App />
+		<TemplateProvider>
+			<App />
+		</TemplateProvider>
 	</MantineProvider>
 )

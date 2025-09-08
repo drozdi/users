@@ -1,28 +1,47 @@
-import { Box, Container, Stack } from '@mantine/core'
+import { AppShell, Group, ScrollArea } from '@mantine/core'
 import { useMemo, useState } from 'react'
 import { UserGroup } from './components/user-group'
+import { UserList } from './components/user-list'
 import { ProviderRouterApp } from './context/router-context'
+import { TemplateSlot } from './context/template-context'
 
 function App() {
 	const [userListFlag, setUserListFlag] = useState<boolean>(false)
+	const [userList, setUserList] = useState<string>('')
 	const ctx = useMemo(
 		() => ({
 			userListFlag,
 			setUserListFlag,
+			userList,
+			setUserList,
 		}),
-		[userListFlag]
+		[userListFlag, userList]
 	)
 
 	return (
 		<ProviderRouterApp value={ctx}>
-			<Stack justify='space-between' w='100vw' h='100vh'>
-				<Box>
-					<Container p='sm' size={1024}>
-						<UserGroup />
-					</Container>
-				</Box>
-				<Box bg='cyan' mih={60}></Box>
-			</Stack>
+			<AppShell
+				footer={{ height: 60 }}
+				navbar={{
+					width: 300,
+					breakpoint: 0,
+				}}
+				padding='md'
+			>
+				<AppShell.Main>
+					<UserList file={userList} />
+				</AppShell.Main>
+				<AppShell.Navbar component={ScrollArea}>
+					<UserGroup />
+				</AppShell.Navbar>
+				<AppShell.Footer bg='cyan'>
+					<Group component='footer' justify='space-between'>
+						<TemplateSlot name='footer'>
+							<div></div>
+						</TemplateSlot>
+					</Group>
+				</AppShell.Footer>
+			</AppShell>
 		</ProviderRouterApp>
 	)
 }
