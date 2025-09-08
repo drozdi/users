@@ -35,7 +35,8 @@ export function UserGroup() {
 					.replace('a', 'а')
 					.replace('b', 'б')
 					.replace('v', 'в')
-					.replace('g', 'г'),
+					.replace('g', 'г')
+					.replace('d', 'д'),
 			})),
 		[_list]
 	)

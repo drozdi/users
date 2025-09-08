@@ -63,7 +63,7 @@ const theme = createTheme({
 		}),
 		TextInput: TextInput.extend({
 			defaultProps: {
-				variant: 'filled',
+				variant: 'default',
 				size: 'xs',
 				radius: 0,
 				rightSectionWidth: 'auto',

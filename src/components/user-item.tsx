@@ -1,31 +1,33 @@
-import { Button, Table } from '@mantine/core'
-export function UserItem({ user, header }: { user: any; header?: any[] }) {
+import { Button, MultiSelect, Select, Table, TextInput } from '@mantine/core'
+export function UserItem({ user, headers }: { user: any; headers?: any[] }) {
 	return (
-		<Table.Tr id={`tr_${user.id}`}>
+		<Table.Tr>
 			<Table.Td>
 				<Button color='red'>{user.uid}</Button>
 			</Table.Td>
-			<Table.Td></Table.Td>
-			{/* <?php foreach ($head as $key => $field): ?>
-                        <td>
-                            <?php if (!empty($field['values']) && true === ($field['multiple']??false) && false): $person[$key] = explode(' ', $person[$key]); ?>
-                                <?php foreach ($field['values'] as $val => $name): ?>
-                                    <label>
-                                        <input type="checkbox" id="f_<?=$id;?>_<?=$key;?>_<?=$val;?>" name="json[<?=$id;?>][<?=$key;?>][]" value="<?=$val;?>" <?=(in_array($val, $person[$key])? 'checked': '');?> >
-                                        <?=$name;?>
-                                    </label>
-                                <?php endforeach; ?>
-                            <?php elseif (!empty($field['values'])): $person[$key] = explode(' ', $person[$key]);?>
-                                <select class="form-control" id="f_<?=$id;?>_<?=$key;?>" name="json[<?=$id;?>][<?=$key;?>]<?=(true === $field['multiple']? '[]': '');?>" <?=(true === $field['multiple']? 'multiple': '');?>>
-                                    <?php foreach ($field['values'] as $val => $name): ?>
-                                        <option value="<?=$val;?>" <?=(in_array($val, $person[$key])? 'selected': '');?>><?=$name;?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            <?php else: ?>
-                                <input class="form-control" id="f_<?=$id;?>_<?=$key;?>" name="json[<?=$id;?>][<?=$key;?>]" value="<?=$person[$key];?>" />
-                            <?php endif; ?>
-                        </td>
-                    <?php endforeach; ?> */}
+			{headers.map(({ field, values = [], multiple = false }) => {
+				return (
+					<Table.Td key={field}>
+						{values.length ? (
+							multiple ? (
+								<MultiSelect
+									data={values}
+									defaultValue={user[field].split(/\s+/)}
+								/>
+							) : (
+								<Select
+									data={values}
+									defaultValue={
+										multiple ? user[field].split(/\s+/) : user[field]
+									}
+								/>
+							)
+						) : (
+							<TextInput variant='default' defaultValue={user[field]} />
+						)}
+					</Table.Td>
+				)
+			})}
 		</Table.Tr>
 	)
 }

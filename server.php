@@ -59,6 +59,8 @@
 		echo file_get_contents('users/'.$_REQUEST['file']);
 	} elseif ($_REQUEST['list_groups']??false) {
 		echo file_get_contents('groups/groups.json');
+	} elseif ($_REQUEST['list_ous']??false) {
+		echo file_get_contents('ous/ous.json');
 	}
 
 	
