@@ -12,9 +12,9 @@ export function UserList({ file }: { file?: string }) {
 		return ''
 	}
 	const ctx = useRouterApp()
-	const [_list, setList] = useState({})
-	const [groups, setGroups] = useState({})
-	const [ous, setOus] = useState({})
+	const [_list, setList] = useState<Record<string, any>>({})
+	const [groups, setGroups] = useState<Record<string, string>>({})
+	const [ous, setOus] = useState<Record<string, string>>({})
 	const list = useMemo(
 		() =>
 			Object.keys(_list).map(uid => ({
@@ -36,63 +36,69 @@ export function UserList({ file }: { file?: string }) {
 		setGroups(groups)
 		setOus(ous)
 	}
-	console.log(ous)
-	const headers = [
-		{
-			field: 'name',
-			label: 'Имя',
-			width: 100,
-		},
-		{
-			field: 'surname',
-			label: 'Фамилия',
-			width: 75,
-		},
-		{
-			field: 'alias',
-			label: 'Alias',
-			width: 100,
-		},
-		{
-			field: 'password',
-			label: 'Пароль',
-			width: 75,
-		},
-		{
-			field: 'unit',
-			label: 'Подразделение',
-			width: 75,
-			values: Object.keys(ous).map(value => ({
-				value,
-				label: ous[value],
-			})),
-		},
-		{
-			field: 'sub',
-			label: 'Папка',
-			width: 50,
-		},
-		{
-			field: 'groups',
-			label: 'Группы',
-			multiple: true,
-			width: 100,
-			values: Object.keys(groups).map(value => ({
-				value,
-				label: groups[value],
-			})),
-		},
-		{
-			width: 100,
-			field: 'add_groups',
-			label: 'Доп. группы',
-		},
-	]
+	const headers = useMemo(
+		() => [
+			{
+				field: 'name',
+				label: 'Имя',
+				width: '6rem',
+			},
+			{
+				field: 'surname',
+				label: 'Фамилия',
+				width: '6rem',
+			},
+			{
+				field: 'alias',
+				label: 'Alias',
+				width: '8rem',
+			},
+			{
+				field: 'password',
+				label: 'Пароль',
+				width: '6rem',
+			},
+			{
+				field: 'unit',
+				label: 'Подразделение',
+				width: '4rem',
+				values: Object.keys(ous).map(value => ({
+					value,
+					label: ous[value],
+				})),
+			},
+			{
+				field: 'sub',
+				label: 'Папка',
+				width: '2rem',
+			},
+			{
+				field: 'groups',
+				label: 'Группы',
+				multiple: true,
+				values: Object.keys(groups).map(value => ({
+					value,
+					label: groups[value],
+				})),
+			},
+			{
+				width: '6rem',
+				field: 'add_groups',
+				label: 'Доп. группы',
+			},
+		],
+		[groups, ous]
+	)
 
-	console.log(headers)
 	useEffect(() => {
 		fetch()
 	}, [file])
+
+	function handleChenge(user: Record<string, string>) {
+		const n = { ..._list, [user.uid]: user }
+		console.log(n)
+		setList(n)
+	}
 	return (
 		<Table striped withRowBorders stickyHeader highlightOnHover>
 			<Table.Thead>
@@ -107,7 +113,12 @@ export function UserList({ file }: { file?: string }) {
 			</Table.Thead>
 			<Table.Tbody>
 				{list.map((item: any) => (
-					<UserItem key={item.uid} user={item} headers={headers} />
+					<UserItem
+						key={item.uid}
+						user={item}
+						headers={headers}
+						onChange={handleChenge}
+					/>
 				))}
 			</Table.Tbody>
 		</Table>

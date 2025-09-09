@@ -25,6 +25,7 @@ function App() {
 				navbar={{
 					width: 300,
 					breakpoint: 0,
+					collapsed: { desktop: Boolean(userList), mobile: Boolean(userList) },
 				}}
 				padding='md'
 			>
