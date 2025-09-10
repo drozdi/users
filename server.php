@@ -2,8 +2,9 @@
 	// Указываем заголовок для возврата JSON
 	header('Content-Type: application/json');
 	header('Access-Control-Allow-Origin: *');
+	header("Access-Control-Allow-Credentials: true");
 	header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-	header("Access-Control-Allow-Headers: X-Requested-With");
+    header('Access-Control-Allow-Headers: Content-Type, Accept, X-Requested-With');
 
 	/*if (empty($requestedPath)) {
 		http_response_code(400);
@@ -30,7 +31,7 @@
         }
 		echo json_encode(['status' => 'ok']);
 	} elseif ($_REQUEST['add_user_group']??false) {
-		file_put_contents('users/' . $_POST['name'] . '.json', '{}');
+		file_put_contents('users/' . $_REQUEST['name'] . '.json', '{}');
 		echo json_encode([
 			'status' => 'ok', 
 			'label' => $_POST['name'],
@@ -57,6 +58,13 @@
         echo json_encode($result);
     } elseif ($_REQUEST['list_users']??false) {
 		echo file_get_contents('users/'.$_REQUEST['file']);
+	} elseif ($_REQUEST['save_users']??false) {
+		$data = $_POST['json']?: [];
+		var_dump($data);
+        //file_put_contents('users/'.$_POST['file'], json_encode($data));
+		echo json_encode([
+			'status' => 'ok', 
+		]);
 	} elseif ($_REQUEST['list_groups']??false) {
 		echo file_get_contents('groups/groups.json');
 	} elseif ($_REQUEST['list_ous']??false) {

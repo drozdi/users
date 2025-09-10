@@ -21,7 +21,7 @@ function App() {
 	return (
 		<ProviderRouterApp value={ctx}>
 			<AppShell
-				footer={{ height: 60 }}
+				footer={{ height: 50 }}
 				navbar={{
 					width: 300,
 					breakpoint: 0,
@@ -36,7 +36,12 @@ function App() {
 					<UserGroup />
 				</AppShell.Navbar>
 				<AppShell.Footer bg='cyan'>
-					<Group component='footer' justify='space-between'>
+					<Group
+						component='footer'
+						p='xs'
+						align='start'
+						justify='space-between'
+					>
 						<TemplateSlot name='footer'>
 							<div></div>
 						</TemplateSlot>

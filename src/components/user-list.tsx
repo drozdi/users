@@ -1,9 +1,10 @@
-import { Table } from '@mantine/core'
+import { Button, Table } from '@mantine/core'
 import { useEffect, useMemo, useState } from 'react'
 import { requestGroupList } from '../api/api-group'
 import { requestOuList } from '../api/api-ou'
-import { requestUserList } from '../api/api-user'
+import { requestUsersList, requestUsersSave } from '../api/api-user'
 import { useRouterApp } from '../context/router-context'
+import { Template } from '../context/template-context'
 import { useQuery, useQueryLoading } from '../hooks/use-query'
 import { UserItem } from './user-item'
 
@@ -23,10 +24,11 @@ export function UserList({ file }: { file?: string }) {
 			})),
 		[_list]
 	)
-	const reqList = useQuery(requestUserList)
+	const reqList = useQuery(requestUsersList)
 	const reqGroup = useQuery(requestGroupList)
 	const reqOu = useQuery(requestOuList)
-	const isLoading = useQueryLoading(reqList, reqGroup, reqOu)
+	const reqSave = useQuery(requestUsersSave)
+	const isLoading = useQueryLoading(reqList, reqGroup, reqOu, reqSave)
 
 	async function fetch() {
 		const res = await reqList.request(file)
@@ -96,31 +98,47 @@ export function UserList({ file }: { file?: string }) {
 
 	function handleChenge(user: Record<string, string>) {
 		const n = { ..._list, [user.uid]: user }
-		console.log(n)
 		setList(n)
 	}
 	return (
-		<Table striped withRowBorders stickyHeader highlightOnHover>
-			<Table.Thead>
-				<Table.Tr>
-					<Table.Th w='2rem'>uid</Table.Th>
-					{headers.map(({ field, label, width }) => (
-						<Table.Th w={width} key={field}>
-							{label}
-						</Table.Th>
+		<>
+			<Table striped withRowBorders stickyHeader highlightOnHover>
+				<Table.Thead>
+					<Table.Tr>
+						<Table.Th w='2rem'>uid</Table.Th>
+						{headers.map(({ field, label, width }) => (
+							<Table.Th w={width} key={field}>
+								{label}
+							</Table.Th>
+						))}
+					</Table.Tr>
+				</Table.Thead>
+				<Table.Tbody>
+					{list.map((item: any) => (
+						<UserItem
+							key={item.uid}
+							user={item}
+							headers={headers}
+							onChange={handleChenge}
+						/>
 					))}
-				</Table.Tr>
-			</Table.Thead>
-			<Table.Tbody>
-				{list.map((item: any) => (
-					<UserItem
-						key={item.uid}
-						user={item}
-						headers={headers}
-						onChange={handleChenge}
-					/>
-				))}
-			</Table.Tbody>
-		</Table>
+				</Table.Tbody>
+			</Table>
+			<Template slot='footer'>
+				<>
+					<Button
+						color='green'
+						onClick={() => {
+							reqSave.request(file, _list)
+						}}
+					>
+						{isLoading ? 'Сохраняю...' : 'Сохранить'}
+					</Button>
+					<Button color='dark' onClick={() => ctx.setUserList('')}>
+						Назад
+					</Button>
+				</>
+			</Template>
+		</>
 	)
 }
