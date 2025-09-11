@@ -42,7 +42,7 @@ export function UserItem({
 								<MultiSelect
 									data={values}
 									name={field}
-									defaultValue={user[field].split(/\s+/)}
+									defaultValue={user[field].split(/\s+/).filter(Boolean)}
 									onChange={v => nandleChangeSelect(field, v)}
 								/>
 							) : (

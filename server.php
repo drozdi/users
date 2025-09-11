@@ -59,9 +59,10 @@
     } elseif ($_REQUEST['list_users']??false) {
 		echo file_get_contents('users/'.$_REQUEST['file']);
 	} elseif ($_REQUEST['save_users']??false) {
-		$data = $_POST['json']?: [];
-		var_dump($data);
-        //file_put_contents('users/'.$_POST['file'], json_encode($data));
+		//$data = $_POST['json']?: [];
+		$json_input = file_get_contents('php://input');
+    	$data = json_decode($json_input, true);
+        file_put_contents('users/'.$_REQUEST['file'], json_encode($data['json'], JSON_UNESCAPED_UNICODE));
 		echo json_encode([
 			'status' => 'ok', 
 		]);

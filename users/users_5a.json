@@ -1,1 +1,222 @@
-{"06745739":{"name":"Елизавета Эдуардовна","surname":"Бабкина","alias":"Бабкина Елизавета Эдуардовна","password":"06745739","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06779947":{"name":"Евгений Артемович","surname":"Белов","alias":"Белов Евгений Артемович","password":"06779947","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06783588":{"name":"Карина Евгеньевна","surname":"Васильева","alias":"Васильева Карина Евгеньевна","password":"06783588","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06728201":{"name":"Карина Максимовна","surname":"Давыдова","alias":"Давыдова Карина Максимовна","password":"06728201","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06710787":{"name":"Евгений Антонович","surname":"Дарьин","alias":"Дарьин Евгений Антонович","password":"06710787","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06723899":{"name":"Дарья Михайловна","surname":"Жигалова","alias":"Жигалова Дарья Михайловна","password":"06723899","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06730595":{"name":"Дмитрий Максимович","surname":"Зуев","alias":"Зуев Дмитрий Максимович","password":"06730595","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06771854":{"name":"Прасковья Сергеевна","surname":"Иванова","alias":"Иванова Прасковья Сергеевна","password":"06771854","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06746893":{"name":"Ева Дмитриевна","surname":"Ильина","alias":"Ильина Ева Дмитриевна","password":"06746893","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06701720":{"name":"Иван Ильич","surname":"Кучумов","alias":"Кучумов Иван Ильич","password":"06701720","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06758641":{"name":"Артём Александрович","surname":"Морозов","alias":"Морозов Артём Александрович","password":"06758641","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06781759":{"name":"Егор Ярославович","surname":"Муравьев","alias":"Муравьев Егор Ярославович","password":"06781759","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06737476":{"name":"Илья Федорович","surname":"Пилипенко","alias":"Пилипенко Илья Федорович","password":"06737476","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06765432":{"name":"Евгений Алексеевич","surname":"Пирожников","alias":"Пирожников Евгений Алексеевич","password":"06765432","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06755544":{"name":"Анас Аскаралиевич","surname":"Рахмулоев","alias":"Рахмулоев Анас Аскаралиевич","password":"06755544","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06778941":{"name":"Егор Алексеевич","surname":"Ремизов","alias":"Ремизов Егор Алексеевич","password":"06778941","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06751948":{"name":"Анастасия Юрьевна","surname":"Семенова","alias":"Семенова Анастасия Юрьевна","password":"06751948","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06703103":{"name":"Денис Артурович","surname":"Сергеев","alias":"Сергеев Денис Артурович","password":"06703103","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06778471":{"name":"Константин Алексеевич","surname":"Соловьев","alias":"Соловьев Константин Алексеевич","password":"06778471","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06743486":{"name":"Анастасия Владимировна","surname":"Тараканова","alias":"Тараканова Анастасия Владимировна","password":"06743486","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06758949":{"name":"Кирилл Ильич","surname":"Тихомиров","alias":"Тихомиров Кирилл Ильич","password":"06758949","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"},"06757001":{"name":"Анатолий Михайлович","surname":"Шемякин","alias":"Шемякин Анатолий Михайлович","password":"06757001","unit":"pupils","sub":"5а","groups":"pupils","add_groups":"class_5a"}}
+{
+	"06745739": {
+		"name": "Елизавета Эдуардовна",
+		"surname": "Бабкина",
+		"alias": "Бабкина Елизавета Эдуардовна",
+		"password": "06745739",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06779947": {
+		"name": "Евгений Артемович",
+		"surname": "Белов",
+		"alias": "Белов Евгений Артемович",
+		"password": "06779947",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06783588": {
+		"name": "Карина Евгеньевна",
+		"surname": "Васильева",
+		"alias": "Васильева Карина Евгеньевна",
+		"password": "06783588",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06728201": {
+		"name": "Карина Максимовна",
+		"surname": "Давыдова",
+		"alias": "Давыдова Карина Максимовна",
+		"password": "06728201",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06710787": {
+		"name": "Евгений Антонович",
+		"surname": "Дарьин",
+		"alias": "Дарьин Евгений Антонович",
+		"password": "06710787",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06723899": {
+		"name": "Дарья Михайловна",
+		"surname": "Жигалова",
+		"alias": "Жигалова Дарья Михайловна",
+		"password": "06723899",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06730595": {
+		"name": "Дмитрий Максимович",
+		"surname": "Зуев",
+		"alias": "Зуев Дмитрий Максимович",
+		"password": "06730595",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06771854": {
+		"name": "Прасковья Сергеевна",
+		"surname": "Иванова",
+		"alias": "Иванова Прасковья Сергеевна",
+		"password": "06771854",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06746893": {
+		"name": "Ева Дмитриевна",
+		"surname": "Ильина",
+		"alias": "Ильина Ева Дмитриевна",
+		"password": "06746893",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06701720": {
+		"name": "Иван Ильич",
+		"surname": "Кучумов",
+		"alias": "Кучумов Иван Ильич",
+		"password": "06701720",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06758641": {
+		"name": "Артём Александрович",
+		"surname": "Морозов",
+		"alias": "Морозов Артём Александрович",
+		"password": "06758641",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06781759": {
+		"name": "Егор Ярославович",
+		"surname": "Муравьев",
+		"alias": "Муравьев Егор Ярославович",
+		"password": "06781759",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06737476": {
+		"name": "Илья Федорович",
+		"surname": "Пилипенко",
+		"alias": "Пилипенко Илья Федорович",
+		"password": "06737476",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06765432": {
+		"name": "Евгений Алексеевич",
+		"surname": "Пирожников",
+		"alias": "Пирожников Евгений Алексеевич",
+		"password": "06765432",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06755544": {
+		"name": "Анас Аскаралиевич",
+		"surname": "Рахмулоев",
+		"alias": "Рахмулоев Анас Аскаралиевич",
+		"password": "06755544",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06778941": {
+		"name": "Егор Алексеевич",
+		"surname": "Ремизов",
+		"alias": "Ремизов Егор Алексеевич",
+		"password": "06778941",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06751948": {
+		"name": "Анастасия Юрьевна",
+		"surname": "Семенова",
+		"alias": "Семенова Анастасия Юрьевна",
+		"password": "06751948",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06703103": {
+		"name": "Денис Артурович",
+		"surname": "Сергеев",
+		"alias": "Сергеев Денис Артурович",
+		"password": "06703103",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06778471": {
+		"name": "Константин Алексеевич",
+		"surname": "Соловьев",
+		"alias": "Соловьев Константин Алексеевич",
+		"password": "06778471",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06743486": {
+		"name": "Анастасия Владимировна",
+		"surname": "Тараканова",
+		"alias": "Тараканова Анастасия Владимировна",
+		"password": "06743486",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06758949": {
+		"name": "Кирилл Ильич",
+		"surname": "Тихомиров",
+		"alias": "Тихомиров Кирилл Ильич",
+		"password": "06758949",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	},
+	"06757001": {
+		"name": "Анатолий Михайлович",
+		"surname": "Шемякин",
+		"alias": "Шемякин Анатолий Михайлович",
+		"password": "06757001",
+		"unit": "pupils",
+		"sub": "5а",
+		"groups": "pupils",
+		"add_groups": "class_5a"
+	}
+}

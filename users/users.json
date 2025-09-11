@@ -1,13 +1,14 @@
 {
 	"es": {
 		"name": "Начальная",
-		"surname": "Школа",
+		"surname": "Школа 11",
 		"alias": "Начальная школа",
 		"password": "123",
 		"unit": "_users",
 		"sub": ".",
 		"groups": "pupils",
-		"add_groups": ""
+		"add_groups": "",
+		"uid": "es"
 	},
 	"external_service": {
 		"name": "external_service",
@@ -17,7 +18,8 @@
 		"unit": "_users",
 		"sub": ".",
 		"add_groups": "",
-		"groups": ""
+		"groups": "",
+		"uid": "external_service"
 	},
 	"zavuch": {
 		"name": "zavuch",
@@ -27,7 +29,8 @@
 		"unit": "_users",
 		"sub": ".",
 		"add_groups": "",
-		"groups": ""
+		"groups": "deputy",
+		"uid": "zavuch"
 	},
 	"gia": {
 		"name": "gia",
@@ -37,7 +40,8 @@
 		"unit": "_users",
 		"sub": ".",
 		"add_groups": "",
-		"groups": ""
+		"groups": "",
+		"uid": "gia"
 	},
 	"asiou": {
 		"name": "asiou",
@@ -47,7 +51,8 @@
 		"unit": "_users",
 		"sub": ".",
 		"add_groups": "",
-		"groups": ""
+		"groups": "",
+		"uid": "asiou"
 	},
 	"acc": {
 		"name": "acc",
@@ -57,6 +62,7 @@
 		"unit": "_users",
 		"sub": ".",
 		"add_groups": "",
-		"groups": ""
+		"groups": "",
+		"uid": "acc"
 	}
 }

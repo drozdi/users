@@ -1,5 +1,6 @@
-import { Button, Table } from '@mantine/core'
-import { useEffect, useMemo, useState } from 'react'
+import { Button, Group, Modal, Stack, Table, Textarea } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { requestGroupList } from '../api/api-group'
 import { requestOuList } from '../api/api-ou'
 import { requestUsersList, requestUsersSave } from '../api/api-user'
@@ -13,9 +14,11 @@ export function UserList({ file }: { file?: string }) {
 		return ''
 	}
 	const ctx = useRouterApp()
+	const refAsiou = useRef<HTMLTextAreaElement>(null)
 	const [_list, setList] = useState<Record<string, any>>({})
 	const [groups, setGroups] = useState<Record<string, string>>({})
 	const [ous, setOus] = useState<Record<string, string>>({})
+	const [openedAsiou, handlerAsiou] = useDisclosure(false)
 	const list = useMemo(
 		() =>
 			Object.keys(_list).map(uid => ({
@@ -100,6 +103,10 @@ export function UserList({ file }: { file?: string }) {
 		const n = { ..._list, [user.uid]: user }
 		setList(n)
 	}
+	function parseAsiou() {
+		console.log(refAsiou.current?.value || '')
+	}
+	//(?<alias>[^,]*),\s*логин:\s*(?<uid>[\w]{1,})\s*пароль:\s*(?<passwor>[\w]{1,})\s*
 	return (
 		<>
 			<Table striped withRowBorders stickyHeader highlightOnHover>
@@ -126,19 +133,39 @@ export function UserList({ file }: { file?: string }) {
 			</Table>
 			<Template slot='footer'>
 				<>
-					<Button
-						color='green'
-						onClick={() => {
-							reqSave.request(file, _list)
-						}}
-					>
-						{isLoading ? 'Сохраняю...' : 'Сохранить'}
-					</Button>
-					<Button color='dark' onClick={() => ctx.setUserList('')}>
-						Назад
-					</Button>
+					<Group>
+						<Button
+							color='green'
+							onClick={() => {
+								reqSave.request(file, _list)
+							}}
+						>
+							{isLoading ? 'Сохраняю...' : 'Сохранить'}
+						</Button>
+						<Button color='dark' onClick={() => ctx.setUserList('')}>
+							Назад
+						</Button>
+					</Group>
+					<Group>
+						<Button onClick={() => handlerAsiou.open()}>
+							Вставить из асиоу
+						</Button>
+					</Group>
 				</>
 			</Template>
+			<Modal
+				opened={openedAsiou}
+				onClose={() => {
+					handlerAsiou.close()
+				}}
+			>
+				<Stack>
+					<Textarea minRows={10} ref={refAsiou}></Textarea>
+					<Group>
+						<Button onClick={() => parseAsiou()}>Добавить</Button>
+					</Group>
+				</Stack>
+			</Modal>
 		</>
 	)
 }
