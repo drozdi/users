@@ -21,9 +21,9 @@ export function UserList({ file }: { file?: string }) {
 	const [openedAsiou, handlerAsiou] = useDisclosure(false)
 	const list = useMemo(
 		() =>
-			Object.keys(_list).map(uid => ({
-				..._list[uid],
-				uid,
+			Object.keys(_list).map(login => ({
+				..._list[login],
+				login,
 			})),
 		[_list]
 	)
@@ -100,19 +100,62 @@ export function UserList({ file }: { file?: string }) {
 	}, [file])
 
 	function handleChenge(user: Record<string, string>) {
-		const n = { ..._list, [user.uid]: user }
+		const n = { ..._list, [user.login]: user }
 		setList(n)
 	}
 	function parseAsiou() {
-		console.log(refAsiou.current?.value || '')
+		const lines = (refAsiou.current?.value || '').trim().split("\n").map(line => line.trim()).filter(line => line.length > 10);
+
+		let unit = ''
+		let groups = ''
+		let add_groups = ''
+		let sub = '.'
+
+		if (/.*_.*/.test(file)) {	
+			const _res = file.match(/(?:users|class)_(?<sub>[0-9]{1,2}\w)(?:.json)?/)
+			unit = 'pupils'
+			groups = 'pupils';
+			sub = _res.groups.sub.replace('a', 'а')
+					.replace('b', 'б')
+					.replace('v', 'в')
+					.replace('g', 'г')
+					.replace('d', 'д')
+			add_groups = 'class_'+_res.groups.sub
+		} else {
+			unit = 'tsi'
+			groups = 'teachers';
+		}
+
+		console.log(file, unit, groups, add_groups, sub)
+
+
+		const adds = {}
+		for (const line of lines) {
+			const res = line.match(/(?<alias>[^,]*),\s*логин:\s*(?<login>[\w]{1,})\s*пароль:\s*(?<password>[\w]{1,})\s*/).groups
+			const arr = res.alias.split(/\s+/)
+			adds[res.login] = {
+                alias: arr.join(' '),
+                surname: arr.shift(),
+                name: arr.join(' '),
+                login: res.login,
+                password: unit === 'pupils'? res.login: res.password,
+                sub,
+                unit,
+                groups,
+                add_groups
+			}
+		}
+
+		console.log({..._list, ...adds})
+		
 	}
-	//(?<alias>[^,]*),\s*логин:\s*(?<uid>[\w]{1,})\s*пароль:\s*(?<passwor>[\w]{1,})\s*
+	//
 	return (
 		<>
 			<Table striped withRowBorders stickyHeader highlightOnHover>
 				<Table.Thead>
 					<Table.Tr>
-						<Table.Th w='2rem'>uid</Table.Th>
+						<Table.Th w='2rem'>login</Table.Th>
 						{headers.map(({ field, label, width }) => (
 							<Table.Th w={width} key={field}>
 								{label}
@@ -123,7 +166,7 @@ export function UserList({ file }: { file?: string }) {
 				<Table.Tbody>
 					{list.map((item: any) => (
 						<UserItem
-							key={item.uid}
+							key={item.login}
 							user={item}
 							headers={headers}
 							onChange={handleChenge}
@@ -155,12 +198,13 @@ export function UserList({ file }: { file?: string }) {
 			</Template>
 			<Modal
 				opened={openedAsiou}
+				size="lg"
 				onClose={() => {
 					handlerAsiou.close()
 				}}
 			>
 				<Stack>
-					<Textarea minRows={10} ref={refAsiou}></Textarea>
+					<Textarea rows={20} ref={refAsiou}></Textarea>
 					<Group>
 						<Button onClick={() => parseAsiou()}>Добавить</Button>
 					</Group>

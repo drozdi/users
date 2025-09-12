@@ -32,7 +32,7 @@ export function UserItem({
 	return (
 		<Table.Tr>
 			<Table.Td>
-				<Button color='red'>{user.uid}</Button>
+				<Button color='red'>{user.login}</Button>
 			</Table.Td>
 			{headers.map(({ field, values = [], multiple = false }) => {
 				return (
