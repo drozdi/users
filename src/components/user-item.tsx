@@ -32,7 +32,9 @@ export function UserItem({
 	return (
 		<Table.Tr>
 			<Table.Td>
-				<Button color='red'>{user.login}</Button>
+				<Button color='red' onClick={onRemove}>
+					{user.login}
+				</Button>
 			</Table.Td>
 			{headers.map(({ field, values = [], multiple = false }) => {
 				return (
@@ -54,12 +56,7 @@ export function UserItem({
 								/>
 							)
 						) : (
-							<TextInput
-								variant='default'
-								name={field}
-								defaultValue={user[field]}
-								onChange={nandleChangeText}
-							/>
+							<TextInput variant='default' name={field} defaultValue={user[field]} onChange={nandleChangeText} />
 						)}
 					</Table.Td>
 				)

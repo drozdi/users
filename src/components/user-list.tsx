@@ -100,54 +100,55 @@ export function UserList({ file }: { file?: string }) {
 	}, [file])
 
 	function handleChenge(user: Record<string, string>) {
-		const n = { ..._list, [user.login]: user }
-		setList(n)
+		setList({ ..._list, [user.login]: user })
+	}
+	function handleRemove(user: Record<string, string>) {
+		delete _list[user.login]
+		setList({ ..._list })
 	}
 	function parseAsiou() {
-		const lines = (refAsiou.current?.value || '').trim().split("\n").map(line => line.trim()).filter(line => line.length > 10);
+		const lines = (refAsiou.current?.value || '')
+			.trim()
+			.split('\n')
+			.map(line => line.trim())
+			.filter(line => line.length > 10)
 
 		let unit = ''
 		let groups = ''
 		let add_groups = ''
 		let sub = '.'
 
-		if (/.*_.*/.test(file)) {	
+		if (/.*_.*/.test(file)) {
 			const _res = file.match(/(?:users|class)_(?<sub>[0-9]{1,2}\w)(?:.json)?/)
 			unit = 'pupils'
-			groups = 'pupils';
-			sub = _res.groups.sub.replace('a', 'а')
-					.replace('b', 'б')
-					.replace('v', 'в')
-					.replace('g', 'г')
-					.replace('d', 'д')
-			add_groups = 'class_'+_res.groups.sub
+			groups = 'pupils'
+			sub = _res.groups.sub.replace('a', 'а').replace('b', 'б').replace('v', 'в').replace('g', 'г').replace('d', 'д')
+			add_groups = 'class_' + _res.groups.sub
 		} else {
 			unit = 'tsi'
-			groups = 'teachers';
+			groups = 'teachers'
 		}
-
-		console.log(file, unit, groups, add_groups, sub)
-
 
 		const adds = {}
 		for (const line of lines) {
-			const res = line.match(/(?<alias>[^,]*),\s*логин:\s*(?<login>[\w]{1,})\s*пароль:\s*(?<password>[\w]{1,})\s*/).groups
+			const res = line.match(
+				/(?<alias>[^,]*),\s*логин:\s*(?<login>[\w]{1,})\s*пароль:\s*(?<password>[\w]{1,})\s*/
+			).groups
 			const arr = res.alias.split(/\s+/)
 			adds[res.login] = {
-                alias: arr.join(' '),
-                surname: arr.shift(),
-                name: arr.join(' '),
-                login: res.login,
-                password: unit === 'pupils'? res.login: res.password,
-                sub,
-                unit,
-                groups,
-                add_groups
+				alias: arr.join(' '),
+				surname: arr.shift(),
+				name: arr.join(' '),
+				login: res.login,
+				password: unit === 'pupils' ? res.login : res.password,
+				sub,
+				unit,
+				groups,
+				add_groups,
 			}
 		}
 
-		console.log({..._list, ...adds})
-		
+		setList({ ..._list, ...adds })
 	}
 	//
 	return (
@@ -170,6 +171,7 @@ export function UserList({ file }: { file?: string }) {
 							user={item}
 							headers={headers}
 							onChange={handleChenge}
+							onRemove={() => handleRemove(item)}
 						/>
 					))}
 				</Table.Tbody>
@@ -190,15 +192,13 @@ export function UserList({ file }: { file?: string }) {
 						</Button>
 					</Group>
 					<Group>
-						<Button onClick={() => handlerAsiou.open()}>
-							Вставить из асиоу
-						</Button>
+						<Button onClick={() => handlerAsiou.open()}>Вставить из асиоу</Button>
 					</Group>
 				</>
 			</Template>
 			<Modal
 				opened={openedAsiou}
-				size="lg"
+				size='lg'
 				onClose={() => {
 					handlerAsiou.close()
 				}}

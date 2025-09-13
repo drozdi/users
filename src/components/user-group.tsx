@@ -1,11 +1,7 @@
 import { ActionIcon, NavLink, Stack, Tooltip } from '@mantine/core'
 import { useEffect, useMemo, useState } from 'react'
 import { TbArrowNarrowUp, TbX } from 'react-icons/tb'
-import {
-	requestListUserGroup,
-	requestRemoveUserGroup,
-	requestUpUserGroup,
-} from '../api/api-user-group'
+import { requestListUserGroup, requestRemoveUserGroup, requestUpUserGroup } from '../api/api-user-group'
 import { useRouterApp } from '../context/router-context'
 import { useQuery } from '../hooks/use-query'
 import classes from './style.module.css'
@@ -31,12 +27,7 @@ export function UserGroup() {
 			_list.map(item => ({
 				...item,
 				up: /(?:users|class)_([0-9]{1,2}\w)/.test(item.label),
-				label: item.label
-					.replace('a', 'а')
-					.replace('b', 'б')
-					.replace('v', 'в')
-					.replace('g', 'г')
-					.replace('d', 'д'),
+				label: item.label.replace('a', 'а').replace('b', 'б').replace('v', 'в').replace('g', 'г').replace('d', 'д'),
 			})),
 		[_list]
 	)
@@ -52,11 +43,7 @@ export function UserGroup() {
 	async function handleUp(path: string) {
 		try {
 			const res = await requestUpUserGroup(path)
-			setList(
-				list.map(item =>
-					item.path === path ? { ...res, status: undefined } : item
-				)
-			)
+			setList(list.map(item => (item.path === path ? { ...res, status: undefined } : item)))
 			await fetch()
 		} catch (error) {
 			console.log(error)
@@ -83,7 +70,14 @@ export function UserGroup() {
 					}
 					rightSection={
 						<Tooltip label='Удалить'>
-							<ActionIcon color='red' onClick={() => handleRemove(item.path)}>
+							<ActionIcon
+								color='red'
+								onClick={event => {
+									event.stopPropagation()
+									event.preventDefault()
+									handleRemove(item.path)
+								}}
+							>
 								<TbX />
 							</ActionIcon>
 						</Tooltip>

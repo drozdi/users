@@ -11,8 +11,54 @@
 		echo json_encode(['error' => 'Parameter "path" is required']);
 		exit;
 	}*/
+	function convertToCSV () {
+		$sortCSV = array('unit', 'sub', 'name', 'surname', 'alias', 'login', 'password', 'groups');
+		$temp = str_replace('%groups%', '%groups% %add_groups%', '%'.implode('%;%', $sortCSV).'%');
+        file_put_contents('users.csv', '');
+		foreach ((new DirectoryIterator('users')) as $file) {
+            if ($file->isDot() || $file->isDir()) {
+                continue;
+            }
+            $res = array();
+            foreach (json_decode(file_get_contents('users/'.$file->getBasename())) as $login => $person) {
+                $person = (array)$person;
+                $person['login'] = $login;
+                $str = $temp;
+                foreach ($person as $key => $val) {
+                    $str = str_replace('%'.$key.'%', $val, $str);
+                }
+                $res[] = trim($str);
+            }
+            file_put_contents('users.csv', implode("\n", $res)."\n",FILE_APPEND);
+        }
+	}
+	function convertToPrint () {
+		$temp = '%alias%, логин: %login% пароль: %password%';
+        foreach ((new DirectoryIterator('users/print')) as $file) {
+            @unlink('users/print/'.$file->getBasename());
+        }
+        foreach ((new DirectoryIterator('users')) as $file) {
+            if ($file->isDot() || $file->isDir()) {
+                continue;
+            }
+            $res = array($file->getBasename('.json'));
+            foreach (json_decode(file_get_contents('users/'.$file->getBasename())) as $login => $person) {
+                $person = (array)$person;
+                $person['login'] = $login;
+                $str = $temp;
+                foreach ($person as $key => $val) {
+                    $str = str_replace('%'.$key.'%', $val, $str);
+                }
+                $res[] = trim($str);
+            }
+            file_put_contents('users/print/'.$file->getBasename('.json').'.txt', implode("\n", $res));
+		}
+	}
 
-	if ($_REQUEST['list_user_group']??false) {
+	if (isset($_REQUEST['get_css'])) {
+		echo file_get_contents('./users.csv', '');
+		exit;
+	} elseif ($_REQUEST['list_user_group']??false) {
 		$result = [];
 		foreach ((new DirectoryIterator('users')) as $file) {
 			if ($file->isDot() || $file->isDir()) {
@@ -28,6 +74,8 @@
 	} elseif ($_REQUEST['remove_user_group']??false) {
 		if (isset($_REQUEST['file'])) {
             @unlink('users/'.$_REQUEST['file']);
+			convertToCSV();
+			convertToPrint();
         }
 		echo json_encode(['status' => 'ok']);
 	} elseif ($_REQUEST['add_user_group']??false) {
@@ -53,6 +101,8 @@
 				$result['status'] = 'ok';
 				$result['label'] = $matches[1].'_'.((int)$matches[2] + 1).$matches[3];
 				$result['path'] = $result['label'].'.json';
+				convertToCSV();
+				convertToPrint();
             }
         }
         echo json_encode($result);
@@ -63,6 +113,8 @@
 		$json_input = file_get_contents('php://input');
     	$data = json_decode($json_input, true);
         file_put_contents('users/'.$_REQUEST['file'], json_encode($data['json'], JSON_UNESCAPED_UNICODE));
+		convertToCSV();
+		convertToPrint();
 		echo json_encode([
 			'status' => 'ok', 
 		]);
