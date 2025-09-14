@@ -1,1 +1,69 @@
-{"es":{"name":"Начальная","surname":"Школа 11","alias":"Начальная школа","password":"123","unit":"_users","sub":".","groups":"pupils","add_groups":"","uid":"es"},"external_service":{"name":"external_service","surname":"external_service","alias":"external_service","password":"369874125","unit":"_users","sub":".","add_groups":"","groups":"","uid":"external_service"},"zavuch":{"name":"zavuch","surname":"zavuch","alias":"zavuch","password":"36541","unit":"_users","sub":".","add_groups":"","groups":"deputy","uid":"zavuch"},"gia":{"name":"gia","surname":"gia","alias":"gia","password":"369874125","unit":"_users","sub":".","add_groups":"","groups":"","uid":"gia"},"asiou":{"name":"asiou","surname":"asiou","alias":"asiou","password":"369874125","unit":"_users","sub":".","add_groups":"","groups":"","uid":"asiou"},"acc":{"name":"acc","surname":"acc","alias":"acc","password":"369874125","unit":"_users","sub":".","add_groups":"","groups":"","uid":"acc"}}
+{
+	"es": {
+		"name": "Начальная",
+		"surname": "Школа 11",
+		"alias": "Начальная школа",
+		"password": "123",
+		"unit": "_users",
+		"sub": ".",
+		"groups": "pupils",
+		"add_groups": "",
+		"uid": "es"
+	},
+	"external_service": {
+		"name": "external_service",
+		"surname": "external_service",
+		"alias": "external_service",
+		"password": "369874125",
+		"unit": "_users",
+		"sub": ".",
+		"add_groups": "",
+		"groups": "",
+		"uid": "external_service"
+	},
+	"zavuch": {
+		"name": "zavuch",
+		"surname": "zavuch",
+		"alias": "zavuch",
+		"password": "36541",
+		"unit": "_users",
+		"sub": ".",
+		"add_groups": "",
+		"groups": "deputy",
+		"uid": "zavuch",
+		"login": "zavuch"
+	},
+	"gia": {
+		"name": "gia",
+		"surname": "gia",
+		"alias": "gia",
+		"password": "369874125",
+		"unit": "_users",
+		"sub": ".",
+		"add_groups": "",
+		"groups": "",
+		"uid": "gia"
+	},
+	"asiou": {
+		"name": "asiou",
+		"surname": "asiou",
+		"alias": "asiou",
+		"password": "369874125",
+		"unit": "_users",
+		"sub": ".",
+		"add_groups": "",
+		"groups": "",
+		"uid": "asiou"
+	},
+	"acc": {
+		"name": "acc",
+		"surname": "acc",
+		"alias": "acc",
+		"password": "369874125",
+		"unit": "_users",
+		"sub": ".",
+		"add_groups": "",
+		"groups": "",
+		"uid": "acc"
+	}
+}
