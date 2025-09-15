@@ -1,7 +1,6 @@
 import axios from 'axios'
-
 export const api = axios.create({
-	baseURL: 'http://localhost:8181/server.php',
+	baseURL: `http://${window.location.hostname}:8181/server.php`,
 	//withCredentials: true,
 	headers: {
 		'Content-Type': 'application/json',
